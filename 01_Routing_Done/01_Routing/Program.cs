@@ -56,6 +56,8 @@ app.MapPost("/weatherforecast", (WeatherForecastCreateDto forecast) =>
     return Results.Ok();
 });
 
+app.MapControllers();
+
 app.Run();
 
 internal record WeatherForecast(int index, DateOnly Date, int TemperatureC)
