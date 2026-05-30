@@ -10,6 +10,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/openapi/v1.json", "API v1");
+    });
 }
 
 var summaries = new[]
@@ -17,15 +21,13 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-List<WeatherForecast> forecasts = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            index,
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToList();
+List<WeatherForecast> forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+(
+    index,
+    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+    Random.Shared.Next(-20, 55),
+    summaries[Random.Shared.Next(summaries.Length)]
+)).ToList();
 
 app.MapGet("/weatherforecast", () =>
 {
