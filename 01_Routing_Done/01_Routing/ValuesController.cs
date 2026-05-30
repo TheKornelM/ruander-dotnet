@@ -4,11 +4,14 @@
 
 namespace _01_Routing
 {
+    [Route("api/[controller]")]
     [Route("[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
         // GET <ValuesController>
+        [Route("list")]
+        [Route("")]
         [HttpGet]
         public IEnumerable<string> Get()
         {
